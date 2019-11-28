@@ -3,10 +3,11 @@ const docClient = new AWS.DynamoDB.DocumentClient()
 const rp = require('minimal-request-promise')
 
 function createOrder(request) {
+    console.log('Save an order', request)
     if (!request || !request.pizza || !request.address)
         throw new Error('To order pizza please provide pizza type and address where pizza should be delivered')
     
-    return rp.post('https://fake-delivery-api.effortlessserverless.com/delivery', {
+    return rp.post('https://some-like-it-hot.effortless-serverless.com/delivery', {
         headers: {
             "Authorization": "aunt-marias-pizzaria-1234567890",
             "Content-Type": "application/json"
