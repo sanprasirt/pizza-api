@@ -9,26 +9,26 @@ function deleteOrder(orderId) {
             orderId: orderId
         }
     }).promise()
-    .then(result => result.Item)
-    .then(item => {
-        if (item.orderStatus !== 'pending')
-            throw new Error('Order status is not pending')
-
-        return rp.delete(`https://fake-delivery-api.effortlessserverless.com/delivery/${orderId}`, {
-            headers: {
-                Authorization: 'aunt-marias-pizzaria-1234567890',
-                'Content-Type': 'application/json'
-            }
+        .then(result => result.Item)
+        .then(item => {
+            if (item.orderStatus !== 'pending')
+                throw new Error('Order status is not pending')
+            // Replace delete function to get fix issue.
+            return rp.get(`https://some-like-it-hot.effortless-serverless.com/delivery/${orderId}`, {
+                headers: {
+                    "Authorization": "aunt-marias-pizzeria-1234567890", 
+                    "Content-type": "application/json"
+                }
+            })
         })
-    })
-    .then(() => {
-        return docClient.delete({
-            TableName: 'pizza-orders',
-            Key: {
-                orderId: orderId
-            }
-        }).promise()
-    })
+        .then(() => {
+            return docClient.delete({
+                TableName: 'pizza-orders',
+                Key: {
+                    orderId: orderId
+                }
+            }).promise()
+        })
 }
 
 module.exports = deleteOrder
