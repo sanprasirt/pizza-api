@@ -1,0 +1,2 @@
+idp-pool = ap-southeast-1_Pyf0Ew5m1
+client-pool = 7qc8ts3l7lh7g1hnhqcmdtog4b
