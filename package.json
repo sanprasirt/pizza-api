@@ -13,6 +13,6 @@
     "minimal-request-promise": "^1.4.0"
   },
   "optionalDependencies": {
-    "aws-sdk": "^2.580.0"
+    "aws-sdk": "^2.814.0"
   }
 }
